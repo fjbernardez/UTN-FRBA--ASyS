@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>termotanque</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: 'all' } }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+body > * {
+  max-width: 42em;
+}
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+}
+pre, code {
+  max-width: 50em;
+  font-family: monospace;
+}
+pre.oct-code {
+  border: 1px solid Grey;
+  padding: 5px;
+}
+pre.oct-code-output {
+  margin-left: 2em;
+}
+span.comment {
+  color: ForestGreen;
+}
+span.keyword {
+  color: Blue;
+}
+span.string {
+  color: DarkOrchid;
+}
+footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+a, a:visited {
+  color: Blue;
+}
+h2 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 1.5em;
+}
+h2 a, h2 a:visited {
+  color: Black;
+}
+</style>
+
+</head>
+<body>
+<h1>termotanque</h1>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#node1">MODELIZACION - TERMOTANQUE</a></li>
+</ul>
+
+<pre class="oct-code">clear;
+clc;</pre>
+<h2><a id="node1">MODELIZACION - TERMOTANQUE</a></h2>
+<pre class="oct-code"><span class="comment">%Termico</span>
+dt1=0.2;
+t1=0:dt1:20;
+<span class="comment">%ecuaciones resultantes</span>
+yt1=3.*exp(-t1)+3*t1-3;
+yt2=3.*(1+exp(-t1)-exp(1-t1));
+
+figure(1);
+hold on ;
+plot(t1,yt1);
+plot (t1,yt2);
+
+axis([0,8,0,4]);
+grid;
+title(<span class="string">"Sistema Termico"</span>);
+xlabel(<span class="string">"Tiempo [seg]"</span>);
+ylabel(<span class="string">"Temperatura [ºC]"</span>);
+legend(<span class="string">"t&lt;1"</span>,<span class="string">"t&gt;1"</span>);
+
+<span class="comment">%Observacion: las curvas son adyacentes para t=1segundo.</span>
+
+<span class="comment">%Hidraulico</span>
+dt2=0.2;
+t2=0:dt2:30;
+<span class="comment">%ecuacion resultante</span>
+yh=-(8/5).*exp(-1/4.*t2)+(8/5);
+
+figure(2);
+plot(t2,yh);
+
+axis([0,25,0,2]);
+grid;
+title(<span class="string">"Sistema hidraulico"</span>);
+xlabel(<span class="string">"Tiempo [seg]"</span>);
+ylabel(<span class="string">"Presion [N/m2]"</span>);
+<span class="comment">##legend("");</span>
+
+<span class="comment">%Observacion: se considera estable para t=5tau=20segundos</span>
+</pre>
+<img src="termotanque-1.png" alt="termotanque-1.png"><img src="termotanque-2.png" alt="termotanque-2.png">
+<footer>
+<hr>
+<a href="https://www.octave.org">Published with GNU Octave 4.4.1</a>
+</footer>
+<!--
+##### SOURCE BEGIN #####
+clear;
+clc;
+
+%% MODELIZACION - TERMOTANQUE
+
+%Termico
+dt1=0.2;
+t1=0:dt1:20;
+%ecuaciones resultantes
+yt1=3.*exp(-t1)+3*t1-3;
+yt2=3.*(1+exp(-t1)-exp(1-t1));
+
+figure(1);
+hold on ;
+plot(t1,yt1);
+plot (t1,yt2);
+
+axis([0,8,0,4]);
+grid;
+title("Sistema Termico");
+xlabel("Tiempo [seg]");
+ylabel("Temperatura [ºC]");
+legend("t<1","t>1");
+
+%Observacion: las curvas son adyacentes para t=1segundo.
+
+%Hidraulico
+dt2=0.2;
+t2=0:dt2:30;
+%ecuacion resultante
+yh=-(8/5).*exp(-1/4.*t2)+(8/5);
+
+figure(2);
+plot(t2,yh);
+
+axis([0,25,0,2]);
+grid;
+title("Sistema hidraulico");
+xlabel("Tiempo [seg]");
+ylabel("Presion [N/m2]");
+##legend("");
+
+%Observacion: se considera estable para t=5tau=20segundos
+
+
+##### SOURCE END #####
+-->
+</body>
+</html>
