@@ -2,7 +2,7 @@ clear;
 clc;
 close all;
 % Convolucion - Diapositiva 20
-% Modelizacion del hojo humano
+% Modelizacion del ojo humano
 
 % delta t
 dt = 0.001;
