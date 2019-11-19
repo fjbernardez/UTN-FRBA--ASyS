@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>clase191119</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: 'all' } }
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+body > * {
+  max-width: 42em;
+}
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+}
+pre, code {
+  max-width: 50em;
+  font-family: monospace;
+}
+pre.oct-code {
+  border: 1px solid Grey;
+  padding: 5px;
+}
+pre.oct-code-output {
+  margin-left: 2em;
+}
+span.comment {
+  color: ForestGreen;
+}
+span.keyword {
+  color: Blue;
+}
+span.string {
+  color: DarkOrchid;
+}
+footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+a, a:visited {
+  color: Blue;
+}
+h2 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 1.5em;
+}
+h2 a, h2 a:visited {
+  color: Black;
+}
+</style>
+
+</head>
+<body>
+<h1>clase191119</h1>
+
+
+<pre class="oct-code">clc;
+close all;
+clear;
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% FOURIER - PRIMERA PARTE - DIAPOSITIVA 38 %</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="comment">%%%%%%%%%%%%%%%</span>
+<span class="comment">%FUNCION IMPAR%</span>
+<span class="comment">%%%%%%%%%%%%%%%</span>
+
+T1=2*pi;
+dt=0.01;
+t1=-2*T1/2:dt:2*T1;
+w10=2*pi/T1;
+f1=1/T1;
+
+<span class="comment">%numero de coeficientes</span>
+N1=10;
+
+<span class="comment">%defino los coeficientes</span>
+n1=1:N1;
+a10=2*pi;
+a1n= (0)./ n1 ;
+b1n=(-2) ./ n1 ;
+
+<span class="comment">%calculo de</span>
+[iSerieFourier01]=istf(a10,a1n,b1n,w10,t1,N1);
+
+figure(1);
+plot(t1,iSerieFourier01);
+xlabel(<span class="string">'TIEMPO'</span>),ylabel(<span class="string">'FOURIER'</span>) ;
+grid;
+title (<span class="string">'FUNCION IMPAR'</span>) ;
+
+figure(2);
+stem(f1.*n1 , b1n );
+xlabel(<span class="string">'FRECUENCIA'</span>),ylabel(<span class="string">'COEFICIENTES'</span>) ;
+grid;
+title (<span class="string">'FUNCION IMPAR'</span>) ;
+
+
+<span class="comment">%%%%%%%%%%%%%</span>
+<span class="comment">%FUNCION PAR%</span>
+<span class="comment">%%%%%%%%%%%%%</span>
+
+T2=2*pi;
+dt2=0.01;
+t2=-2*T2/2:dt2:2*T2;
+w20=2*pi/T2;
+f2=1/T2;
+
+<span class="comment">%numero de coeficientes</span>
+N2=10;
+
+<span class="comment">%defino los coeficientes</span>
+n2=1:N2;
+a20=pi;
+a2n= (-2 ./(pi*(n2.*n2))).*((-1).^n2 -1);
+b2n= (0)./ n2 ;
+
+<span class="comment">%an=-(2/(pi*n*n))*((-1)^n-1);</span>
+<span class="comment">%calculo de</span>
+[iSerieFourier02]=istf(a20,a2n,b2n,w20,t2,N2);
+
+figure(3);
+plot(t1,iSerieFourier02);
+xlabel(<span class="string">'TIEMPO'</span>),ylabel(<span class="string">'FOURIER'</span>) ;
+grid;
+title (<span class="string">'FUNCION PAR'</span>) ;
+
+figure(4);
+stem(f2.*n2 , a2n);
+xlabel(<span class="string">'FRECUENCIA'</span>),ylabel(<span class="string">'COEFICIENTES'</span>) ;
+grid;
+title (<span class="string">'FUNCION PAR'</span>) ;</pre>
+<img src="clase191119-1.png" alt="clase191119-1.png"><img src="clase191119-2.png" alt="clase191119-2.png"><img src="clase191119-3.png" alt="clase191119-3.png"><img src="clase191119-4.png" alt="clase191119-4.png">
+<footer>
+<hr>
+<a href="https://www.octave.org">Published with GNU Octave 4.4.1</a>
+</footer>
+<!--
+##### SOURCE BEGIN #####
+clc;
+close all;
+clear;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FOURIER - PRIMERA PARTE - DIAPOSITIVA 38 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+%FUNCION IMPAR%
+%%%%%%%%%%%%%%%
+
+T1=2*pi;
+dt=0.01;
+t1=-2*T1/2:dt:2*T1;
+w10=2*pi/T1;
+f1=1/T1;
+
+%numero de coeficientes
+N1=10;
+
+%defino los coeficientes
+n1=1:N1;
+a10=2*pi;
+a1n= (0)./ n1 ;
+b1n=(-2) ./ n1 ;
+
+%calculo de
+[iSerieFourier01]=istf(a10,a1n,b1n,w10,t1,N1);
+
+figure(1);
+plot(t1,iSerieFourier01);
+xlabel('TIEMPO'),ylabel('FOURIER') ;
+grid;
+title ('FUNCION IMPAR') ;
+
+figure(2);
+stem(f1.*n1 , b1n );
+xlabel('FRECUENCIA'),ylabel('COEFICIENTES') ;
+grid;
+title ('FUNCION IMPAR') ;
+
+
+%%%%%%%%%%%%%
+%FUNCION PAR%
+%%%%%%%%%%%%%
+
+T2=2*pi;
+dt2=0.01;
+t2=-2*T2/2:dt2:2*T2;
+w20=2*pi/T2;
+f2=1/T2;
+
+%numero de coeficientes
+N2=10;
+
+%defino los coeficientes
+n2=1:N2;
+a20=pi;
+a2n= (-2 ./(pi*(n2.*n2))).*((-1).^n2 -1);
+b2n= (0)./ n2 ;
+
+%an=-(2/(pi*n*n))*((-1)^n-1);
+%calculo de
+[iSerieFourier02]=istf(a20,a2n,b2n,w20,t2,N2);
+
+figure(3);
+plot(t1,iSerieFourier02);
+xlabel('TIEMPO'),ylabel('FOURIER') ;
+grid;
+title ('FUNCION PAR') ;
+
+figure(4);
+stem(f2.*n2 , a2n);
+xlabel('FRECUENCIA'),ylabel('COEFICIENTES') ;
+grid;
+title ('FUNCION PAR') ;
+##### SOURCE END #####
+-->
+</body>
+</html>
